@@ -1,0 +1,741 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Vendor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="moreinfo.html">More Info</a></li>
+            <li><a href="contactt.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Food Vendor</h1>
+        <p>Your favorite place to order delicious food online.</p>
+        <img src="https://via.placeholder.com/600x300" alt="Delicious food">
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Food Vendor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .food-list {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .food-list label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .food-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="info.html">More Info</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Order Food</h1>
+        <form id="orderForm" onsubmit="sendOrder(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <div class="food-list">
+                <label>
+                    <input type="checkbox" name="food" value="Pizza"> Pizza
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Burger"> Burger
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Pasta"> Pasta
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Salad"> Salad
+                </label>
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+    <script>
+        function sendOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const foodItems = Array.from(document.querySelectorAll('input[name="food"]:checked')).map(item => item.value);
+
+            if (foodItems.length === 0) {
+                alert("Please select at least one food item.");
+                return;
+            }
+
+            const message = `Hello, I would like to place an order:
+            \nName: ${name}
+            \nPhone: ${phone}
+            \nDelivery Address: ${address}
+            \nFood Items: ${foodItems.join(", ")}`;
+
+            const whatsappURL = `https://wa.me/yourwhatsappnumber?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html> -->
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Confectionaries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6f2;
+            color: #333;
+        }
+        
+        nav {
+            width: 100%;
+            background-color: #ff99cc; /* Pink color */
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between; /* Align items at the edges */
+            align-items: center; /* Center items vertically */
+        }
+        nav h1 {
+            margin: 0 20px; /* Adjust spacing as needed */
+            font-size: 1.5rem; /* Adjust font size */
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;}
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f1a5e1c8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel .prev, .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .carousel .prev {
+            left: 10px;
+        }
+        .carousel .next {
+            right: 10px;
+        }
+        footer {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer .socials {
+            margin: 10px 0;
+        }
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+         <h1><a href="index.html" style="color: #fff; text-decoration: none;">Jenny's Confectionaries</a></h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="moreinfo.html">More Info</a></li>
+            <li><a href="contactt.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Jenny's Food</h1>
+        <p>Your favorite place to order delicious food online.</p>
+    </div>
+    <div class="carousel">
+        <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <img src="https://media.istockphoto.com/id/1170236302/photo/african-beef-stew-in-tomato-sauce-with-spices-and-herbs.jpg?s=612x612&w=0&k=20&c=KPXOvQYAvClbS19PSgd7zmKsBL9Uz9C2SgdtT8JnV1s=" class="active" alt="Jollof Rice">
+        <img src="https://media.istockphoto.com/id/503203991/photo/homemade-italian-chicken-parmesan.jpg?s=612x612&w=0&k=20&c=T0eI0IqYYWJYvihT9itVeng0MMubNxCpz133VC_qhI0=" alt="Egusi Soup">
+        <img src="https://img.freepik.com/free-photo/side-view-pilaf-with-stewed-beef-meat-plate_141793-5057.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1717804800&semt=ais_user" alt="Suya">
+        <img src="https://www.shutterstock.com/image-photo/small-bowl-porridge-beans-served-600nw-1319617382.jpg" alt="Pounded Yam">
+        <img src="https://i.ytimg.com/vi/NRPEld34o2E/maxresdefault.jpg" alt="Akara">
+    </div>
+    <footer>
+        <p>Contact us: +2349052440708</p>
+        <div class="socials">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2024 Food Vendor. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => changeSlide(1), 3000);
+    </script>
+</body>
+</html>  -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Confectionaries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6f2;
+            color: #333;
+        }
+        nav {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav h1 {
+            margin: 0 20px;
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f1a5e1c8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel .prev, .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .carousel .prev {
+            left: 10px;
+        }
+        .carousel .next {
+            right: 10px;
+        }
+        footer {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer .socials {
+            margin: 10px 0;
+        }
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav h1 {
+                margin: 0 auto;
+                font-size: 1.2rem;
+            }
+            .container {
+                width: 90%;
+            }
+            .carousel {
+                max-width: 100%;
+            }
+            .carousel .prev, .carousel .next {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1><a href="index.html" style="color: #fff; text-decoration: none;">Jenny's Confectionaries</a></h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="moreinfo.html">More Info</a></li>
+            <li><a href="contactt.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Jenny's Food</h1>
+        <p>Your favorite place to order delicious food online.</p>
+    </div>
+    <div class="carousel">
+        <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <img src="https://media.istockphoto.com/id/1170236302/photo/african-beef-stew-in-tomato-sauce-with-spices-and-herbs.jpg?s=612x612&w=0&k=20&c=KPXOvQYAvClbS19PSgd7zmKsBL9Uz9C2SgdtT8JnV1s=" class="active" alt="Jollof Rice">
+        <img src="https://media.istockphoto.com/id/503203991/photo/homemade-italian-chicken-parmesan.jpg?s=612x612&w=0&k=20&c=T0eI0IqYYWJYvihT9itVeng0MMubNxCpz133VC_qhI0=" alt="Egusi Soup">
+        <img src="https://img.freepik.com/free-photo/side-view-pilaf-with-stewed-beef-meat-plate_141793-5057.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1717804800&semt=ais_user" alt="Suya">
+        <img src="https://www.shutterstock.com/image-photo/small-bowl-porridge-beans-served-600nw-1319617382.jpg" alt="Pounded Yam">
+        <img src="https://i.ytimg.com/vi/NRPEld34o2E/maxresdefault.jpg" alt="Akara">
+    </div>
+    <footer>
+        <p>Contact us: +2349052440708</p>
+        <div class="socials">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2024 Food Vendor. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => changeSlide(1), 3000);
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny's Confectionaries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            width: 100%;
+            background-color: #ff99cc; /* Pink color */
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between; /* Align items at the edges */
+            align-items: center; /* Center items vertically */
+            flex-wrap: wrap; /* Allow items to wrap */
+        }
+        nav h1 {
+            margin: 0 20px; /* Adjust spacing as needed */
+            font-size: 1.5rem; /* Adjust font size */
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .container {
+            flex: 1;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f1a5e1c8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel .prev, .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .carousel .prev {
+            left: 10px;
+        }
+        .carousel .next {
+            right: 10px;
+        }
+        footer {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+        footer .socials {
+            margin: 10px 0;
+        }
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                display: none;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav h1 {
+                margin: 0 auto;
+                font-size: 1.2rem;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1><a href="index.html" style="color: #fff; text-decoration: none;">Jenny's Confectionaries</a></h1>
+        <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="moreinfo.html">More Info</a></li>
+            <li><a href="contactt.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Jenny's Food</h1>
+        <p>Your favorite place to order delicious food online.</p>
+    </div>
+    <div class="carousel">
+        <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <img src="https://media.istockphoto.com/id/1170236302/photo/african-beef-stew-in-tomato-sauce-with-spices-and-herbs.jpg?s=612x612&w=0&k=20&c=KPXOvQYAvClbS19PSgd7zmKsBL9Uz9C2SgdtT8JnV1s=" class="active" alt="Jollof Rice">
+        <img src="https://media.istockphoto.com/id/503203991/photo/homemade-italian-chicken-parmesan.jpg?s=612x612&w=0&k=20&c=T0eI0IqYYWJYvihT9itVeng0MMubNxCpz133VC_qhI0=" alt="Egusi Soup">
+        <img src="https://img.freepik.com/free-photo/side-view-pilaf-with-stewed-beef-meat-plate_141793-5057.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1717804800&semt=ais_user" alt="Suya">
+        <img src="https://www.shutterstock.com/image-photo/small-bowl-porridge-beans-served-600nw-1319617382.jpg" alt="Pounded Yam">
+        <img src="https://i.ytimg.com/vi/NRPEld34o2E/maxresdefault.jpg" alt="Akara">
+    </div>
+    <footer>
+        <p>Contact us: +2349052440708</p>
+        <div class="socials">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2024 Food Vendor. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => changeSlide(1), 3000);
+
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

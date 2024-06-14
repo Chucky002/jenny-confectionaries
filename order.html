@@ -1,0 +1,576 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Food Vendor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .food-list {
+            list-style: none;
+            padding: 0;
+        }
+        .food-list li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .food-list li button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .food-list li button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="info.html">More Info</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Order Food</h1>
+        <ul class="food-list">
+            <li>
+                <span>Pizza</span>
+                <button onclick="selectFood('Pizza')">Order Now</button>
+            </li>
+            <li>
+                <span>Burger</span>
+                <button onclick="selectFood('Burger')">Order Now</button>
+            </li>
+            <li>
+                <span>Pasta</span>
+                <button onclick="selectFood('Pasta')">Order Now</button>
+            </li>
+            <li>
+                <span>Salad</span>
+                <button onclick="selectFood('Salad')">Order Now</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function selectFood(foodItem) {
+            const name = prompt("Enter your name:");
+            const phone = prompt("Enter your phone number:");
+            const address = prompt("Enter your delivery address:");
+            if (name && phone && address) {
+                const message = `Hello, I would like to place an order:
+                \nName: ${name}
+                \nPhone: ${phone}
+                \nFood Item: ${foodItem}
+                \nDelivery Address: ${address}`;
+
+                const whatsappURL = `https://wa.me/yourwhatsappnumber?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            }
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Food Vendor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .food-list {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .food-list label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .food-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="info.html">More Info</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Order Food</h1>
+        <form id="orderForm" onsubmit="sendOrder(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <div class="food-list">
+                <label>
+                    <input type="checkbox" name="food" value="Pizza"> Pizza
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Burger"> Burger
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Pasta"> Pasta
+                </label>
+                <label>
+                    <input type="checkbox" name="food" value="Salad"> Salad
+                </label>
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+    <script>
+        function sendOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const foodItems = Array.from(document.querySelectorAll('input[name="food"]:checked')).map(item => item.value);
+
+            if (foodItems.length === 0) {
+                alert("Please select at least one food item.");
+                return;
+            }
+
+            const message = `Hello, I would like to place an order:
+            \nName: ${name}
+            \nPhone: ${phone}
+            \nDelivery Address: ${address}
+            \nFood Items: ${foodItems.join(", ")}`;
+
+            const whatsappURL = `https://wa.me/yourwhatsappnumber?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Order - Jenny's Confectionaries</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+     <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6f2;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav h1 {
+            margin: 0 20px;
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .container {
+            flex: 1;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f1a5e1c8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: start;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .food-list {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .food-list label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .food-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        footer {
+            width: 100%;
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer .socials {
+            margin: 10px 0;
+        }
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                display: none;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav h1 {
+                margin: 0 auto;
+                font-size: 1.2rem;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+ </head>
+ <body>
+     <nav>
+         <h1><a href="index.html" style="color: #fff; text-decoration: none;">Jenny's Confectionaries</a></h1>
+         <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+         <ul>
+             <li><a href="index.html">Home</a></li>
+             <li><a href="order.html">Order</a></li>
+             <li><a href="moreinfo.html">More Info</a></li>
+             <li><a href="contactt.html">Contact</a></li>
+         </ul>
+     </nav>
+     <div class="container">
+         <h1>Order Food</h1>
+         <form id="orderForm">
+             <label for="name">Name</label>
+             <input type="text" id="name" name="name" required>
+ 
+             <label for="phone">Phone Number</label>
+             <input type="tel" id="phone" name="phone" required>
+ 
+             <label for="address">Delivery Address</label>
+             <textarea id="address" name="address" rows="3" required></textarea>
+ 
+             <div class="food-list">
+                 <label><input type="checkbox" name="food" value="jellof Rice"> Jellof Rice</label>
+                 <label><input type="checkbox" name="food" value="Beans and plantains"> Beans and plantains</label>
+                 <label><input type="checkbox" name="food" value="Pasta"> Pasta</label>
+                 <label><input type="checkbox" name="food" value="Soup"> Soup</label>
+             </div>
+ 
+             <button type="button" onclick="submitOrder()">Place Order</button>
+         </form>
+     </div>
+     <footer>
+         <p>Contact us: +2349052440708</p>
+         <div class="socials">
+             <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+             <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+             <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+         </div>
+         <p>&copy; 2024 Food Vendor. All rights reserved.</p>
+     </footer>
+     <script>
+         function toggleMenu() {
+             const menu = document.querySelector('nav ul');
+             menu.classList.toggle('active');
+         }
+         function submitOrder() {
+             const form = document.getElementById('orderForm');
+             const formData = new FormData(form);
+ 
+             const name = formData.get('name');
+             const phone = formData.get('phone');
+             const address = formData.get('address');
+             const foodItems = formData.getAll('food').join(', ');
+ 
+             if (name && phone && address && foodItems) {
+                 const message = `Hello, I would like to place an order:
+                 \nName: ${name}
+                 \nPhone: ${phone}
+                 \nFood Items: ${foodItems}
+                 \nDelivery Address: ${address}`;
+ 
+                 const whatsappURL = `https://wa.me/+2349052440708?text=${encodeURIComponent(message)}`;
+                 window.open(whatsappURL, '_blank');
+             } else {
+                 alert('Please fill in all fields and select at least one food item.');
+             }
+         }
+     </script>
+ </body>
+ </html>
+ 
+
+
+
+
+
+
+
+
+<!-- 
+<body>
+   <nav>
+         <h1><a href="index.html" style="color: #fff; text-decoration: none;">Jenny's Confectionaries</a></h1>
+         <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+         <ul>
+             <li><a href="index.html">Home</a></li>
+             <li><a href="order.html">Order</a></li>
+             <li><a href="moreinfo.html">More Info</a></li>
+             <li><a href="contactt.html">Contact</a></li>
+         </ul>
+     </nav>
+    <div class="container">
+        <h1>Order Food</h1>
+        <form id="orderForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Delivery Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <div class="food-list">
+                <label><input type="checkbox" name="food" value=" jellof Rice"> jellof Rice</label>
+                <label><input type="checkbox" name="food" value="Beans and plantains"> Beans and plantains</label>
+                <label><input type="checkbox" name="food" value="Pasta"> Pasta</label>
+                <label><input type="checkbox" name="food" value="Soup"> Soup</label>
+            </div>
+
+            <button type="button" onclick="submitOrder()">Place Order</button>
+        </form>
+    </div>
+    <footer>
+        <p>Contact us: +2349052440708</p>
+        <div class="socials">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2024 Food Vendor. All rights reserved.</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            menu.classList.toggle('active');
+        }
+    </script>
+    <script>
+        function submitOrder() {
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const address = formData.get('address');
+            const foodItems = formData.getAll('food').join(', ');
+
+            if (name && phone && address && foodItems) {
+                const message = `Hello, I would like to place an order:
+                \nName: ${name}
+                \nPhone: ${phone}
+                \nFood Items: ${foodItems}
+                \nDelivery Address: ${address}`;
+
+                const whatsappURL = `https://wa.me/+2349052440708?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert('Please fill in all fields and select at least one food item.');
+            }
+        }
+    </script>
+</body> -->
